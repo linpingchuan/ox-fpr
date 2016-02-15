@@ -9,7 +9,7 @@
 now define a function quad in terms of square
 
 > quad :: Integer -> Integer
-> quad x = square x * square x
+> quad x = square (square x)
 
 1.b. define function larger
 
@@ -28,18 +28,18 @@ Applicative order reduction
 = first 42 (double (1 + 2))
 = first 42 (double (3))
 = first 42 (3 + 3)
-= first 42 (3 + 3)
+= first 42 (3 + 3)          -- this is slightly inaccurate. refer to model solution
 = 42
 
 Normal order reduction
 
 = first 42 (double (1 + 2))
-= first 42 ((1 + 2) + (1 + 2))
 = 42
 
 2.b. first 42 (double (add 1 infinity))
 
 Applicative order reduction
+(Verified with JG, the model solution is not accurate. The one below is!)
 
 = first 42 (double (add 1 (1+infinity)))
 = first 42 (double (add 1 (1+(1+infinity))))
@@ -53,7 +53,7 @@ Normal order reduction
 
 2.c. first infinity (double (add 1 2))
 
-Applicative order reduction
+Applicative order reduction - WRONG. refer to model solution.
 
 = first infinity (double (1 + 2))
 = first infinity (double 3)
