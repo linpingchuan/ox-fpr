@@ -1,0 +1,97 @@
+To enlarge font in emacs (on mac, at least):
+
+  M-x customize -> Faces -> Basic Faces -> Default -> Height 200
+
+C-c C-b switches to Haskell buffer
+
+----------------------------------------------------------------------
+
+The demos are from the book "The Haskell School of Expression"
+(SOE). See
+
+	http://haskell.org/soe/
+
+The SOE source code is included on the CD. It depends, however, on the
+GLFW package that must be installed before running SOE code. See
+
+	http://haskell.org/soe/software1.htm
+
+for further instructions.
+
+-------------------------------------------------------------------------------
+
+cd <path-to-demos>
+cd SOE/src/
+ghci SimpleGraphics.lhs
+
+main0  -- Hello World
+main3  -- Sierpinski
+:l Snowflake
+main
+:l Animation
+main1  -- oscillating ellipse
+main4  -- oscillating ellipse with circling disk
+main8  -- kaleidoscopes
+:l Fal
+test (paddleball 2)
+
+-------------------------------------------------------------------------------
+
+cd <path-to-demos>
+ghci -iSOE/haskore/src Tequila.lhs
+go tequila
+play tequila -- slower
+
+---
+
+cd SOE/src
+ghci -i../haskore/src MDL.lhs
+
+
+play cMajArp
+play cMajChd
+play (cMajArp :+: cMajChd)
+
+play run
+play (run :+: revM run)
+play (run :=: revM run)
+play (Tempo (1/8) (Instr Lead6Voice run))
+play (Tempo (1/10) (Instr FX4Atmosphere run))
+play (Tempo (1/4) (run :=: revM run))
+play (Tempo (1/4) (Instr Flute run :+: revM run))
+play (Tempo (1/4) (Instr Flute run :+: Instr Koto (revM run)))
+
+play cascade
+play cascades
+play (Instr AcousticGrandPiano (Tempo (1/2) cascades))
+
+play (Instr Percussion (roll en (perc ClosedHiHat 2)))
+play funkGroove
+
+play ssfMelody
+play (ssfMelody :=: funkGroove)
+play (ssfMelody /=: funkGroove)
+
+play waterfall
+play pr12
+play (Instr SteelDrums pr12)
+play main
+
+---
+
+cd ../haskore/src
+ghci HaskoreExamples
+play (Instr "piano" (cascades :+: revM cascades)) -- cascades
+play (rep (delay durss) (Trans 4) 2 ss) -- self-similar
+play childSong6
+play (revM childSong6)
+
+-------------------------------------------------------------------------------
+
+NB. I'v added
+
+> play m = do test m
+>             system "timidity test.mid"
+>             return ()
+
+to SOE/src/MDL.lhs to be able to `play' music under linux.
