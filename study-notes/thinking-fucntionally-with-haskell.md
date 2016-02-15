@@ -114,6 +114,9 @@ Thus, `sin theta * cos theta` does not need parenthesis and is equivalent to `(s
         =>
     
         "bla 3\n ra 2\n"                                                                                                                                                    
+
+* List indexing operator: !!    
+Given a list xs and an index n, the expression xs!!n returns the element of xs at position n, counting from 0.
                                                 
          
 # References
