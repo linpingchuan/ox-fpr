@@ -28,7 +28,7 @@ Applicative order reduction
 = first 42 (double (1 + 2))
 = first 42 (double (3))
 = first 42 (3 + 3)
-= first 42 (3 + 3)          -- this is slightly inaccurate. refer to model solution
+= first 42 (3 + 3)       -- this is slightly inaccurate. refer to model solution
 = 42
 
 Normal order reduction
