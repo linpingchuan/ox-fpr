@@ -35,7 +35,7 @@ Guarded equations
 > charToNum :: Char -> Int
 > charToNum c = ord c - ord '0'
 
-2.4 showDate -- WRONG
+2.4 showDate -- WRONG, refer to model solution
 
 > showDayWithOrdinal :: Integer -> String
 > showDayWithOrdinal x
