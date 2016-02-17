@@ -3,7 +3,7 @@
 > type Grid a = [[a]]
 
 > catPic :: Grid Char
-> catPic = 
+> catPic =
 >   [ "  *     *  ",
 >     " * *   * * ",
 >     " *  ***  * ",
@@ -13,8 +13,55 @@
 >     " *       * ",
 >     "  ******   " ]
 
+4.1 Bitmaps as lists of lists
+
+4.1.1 charRender
+
+> charRender :: Grid Char -> IO()
+> charRender a = putStr (unlines a)
+
+4.1,2.a solidSquare
+
+> generateRow :: Int -> String
+> generateRow 0 = []
+> generateRow n = ['*'] ++ generateRow (n-1)
+
+> solidSquare :: Int -> Grid Char
+> solidSquare n = [generateRow n | x <- [1..n]]
+
+> solidSquare2 :: Int -> Grid Char
+> solidSquare2 n = replicate n (replicate n '*')
+
+4.1.2.b hollow square
+
+> hollowSquare :: Int -> Grid Char
+> hollowSquare 0 = []
+> hollowSquare 1 = ["*"]
+> hollowSquare 2 = ["**", "**"]
+> hollowSquare n = [solid n] ++ replicate (n-2) (hollow n) ++ [solid n]
+>   where
+>       solid n = replicate n '*'
+>       hollow n = "*" ++ replicate (n-2) ' ' ++ "*"
+
+4.1.2.c right triangle
+
+Recursive attempt at defining a right triangle
+
+> rightTriangle :: Int -> Grid Char
+> rightTriangle 0 = []
+> rightTriangle 1 = ["*"]
+> rightTriangle 2 = ["*", "**"]
+> rightTriangle n = rightTriangle (n-1) ++ [replicate n '*']
+
+The above doesn't quite work and generates a leftTriangle instead. Is there an elegent recursive solution possible
+
+Non-recursive definition of right triangle
+
+> rightTriangle2 :: Int -> Grid Char
+> rightTriangle2 n = [ replicate (n-i) ' ' ++ replicate i '*'| i <- [1 .. n]]
+
 > catBitmap :: Grid Bool
-> catBitmap = [ 
+> catBitmap = [
 >     [False,False,True,False,False,False,False,False,True,False,False],
 >     [False,True,False,True,False,False,False,True,False,True,False],
 >     [False,True,False,False,True,True,True,False,False,True,False],
@@ -24,6 +71,14 @@
 >     [False,True,False,False,False,False,False,False,False,True,False],
 >     [False,False,True,True,True,True,True,True,False,False,False]
 >   ]
+
+4.1.3 Boolean grid
+
+> bwCharView :: Grid Bool -> Grid Char
+> bwCharView boolGrid = map (map (\x -> if x then '*' else ' ')) boolGrid
+
+Try the above in ghci using the following command
+prelude> charRender $ bwCharView catBitmap
 
 > fprBitmap :: Grid Bool
 > fprBitmap = [
@@ -39,10 +94,20 @@
 > type Point = (Integer,Integer)
 
 > catPoints :: [Point]
-> catPoints = 
+> catPoints =
 >   [(2,0),(8,0),(1,1),(3,1),(7,1),(9,1),(1,2),(4,2),(5,2),(6,2),
 >    (9,2),(0,3),(10,3),(0,4),(3,4),(7,4),(10,4),(0,5),(5,5),
 >    (10,5),(1,6),(9,6),(2,7),(3,7),(4,7),(5,7),(6,7),(7,7)]
+
+4.2 Points
+
+4.2.4 pointsBitmap
+
+> possiblePoints :: Integer -> [Point]
+> possiblePoints n = [(i, j) | i <- [0..(n-1)], j <- [0, (n-1)]]
+
+> pointsBitmap :: [Point] -> Grid Bool
+> pointsBitmap points = map (\point -> if point `elem` points then [True] else [False]) (possiblePoints 10)
 
 > logoShades :: Grid Float
 > logoShades = [
@@ -78,7 +143,7 @@
 >   where a = 1/3 ; b = 2/3
 
 > data RGB = RGB Int Int Int
-> 
+>
 > instance Show RGB where
 >   show (RGB r g b) = show r ++" "++ show g ++" "++ show b
 
