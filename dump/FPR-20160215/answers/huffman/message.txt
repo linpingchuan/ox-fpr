@@ -1,0 +1,18 @@
+  ###           #     # ####### #     #           ###
+  ###           #  #  # #     # #  #  #           ###
+  ###           #  #  # #     # #  #  #           ###
+   #            #  #  # #     # #  #  #            #
+                #  #  # #     # #  #  #
+  ###           #  #  # #     # #  #  #           ###
+  ###            ## ##  #######  ## ##            ###
+
+
+        It looks like you've cracked functional
+        programming!!!
+
+        Where possible change your answers so that you use 
+        partial applications or fold-left/fold-right
+        computations.
+
+
+
