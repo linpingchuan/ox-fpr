@@ -117,7 +117,55 @@ Thus, `sin theta * cos theta` does not need parenthesis and is equivalent to `(s
 
 * List indexing operator: !!    
 Given a list xs and an index n, the expression xs!!n returns the element of xs at position n, counting from 0.
+
+# Expressions, types and values
                                                 
+* Each well formed expression has a type and a value
+
+* Some well formed expressions have a special value
+Example:
+
+        1 `div` 0
+         
+has a value that is called `undefined` in Haskell.
+
+* Any function of 2 arguments can be made into an operator by enclosing it in back quotes and any operator can be 
+converted to a prefix name by enclosing it in parentheses.
+Example:
+
+        3 + 4       is the same as     (+) 3 4
+        div 3 4     is the same as     3 `div` 4
+             
+* __Sections__ are alternate ways of naming functions
+
+        (+1) n = n+1
+        (0<) n = 0<n
+        (1/) x = 1/x
+        
+* __Lambdas__ are another alternate way of describing functions
+Example of a lambda:
+        
+        \n -> 2*n+1
+
+* Evaluation strategies
+    * Eager evaluation - arguments are always evaluated before a function is applied
+    * Lazy evaluation - arguments of the function are evaluated only when needed 
+        * Lazy evaluation terminates whenever _any_ reduction order terminates
+        * Never takes more steps than eager evaluation and sometimes infinitely fewer
+        * Can require a lot more space as arguments may get accumulated and not evaluated until the last possible
+        instance
+        * __Haskell uses lazy evaluation__
+        
+* Types and type classes
+    * Data declaration, example: `data Bool = False | True`
+    * Compound types, example: `[Int]`, `(Int, Char)`, `()`, `Int -> Int`
+    * Polymorphic functions: functions which can work with more than one argument type
+    Example:
+    
+        take :: Int -> [a] -> [a]
+    * Type classes such `Num` have a collection of named methods which can be defined directly for each instance of the 
+    type class
+        * Type classes have instances
          
 # References
 * [1] : Thinking functionally with haskell, Richard Bird
