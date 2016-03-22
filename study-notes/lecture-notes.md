@@ -6,8 +6,10 @@
 
 * FP focuses on expressions and not on statements
 
-* __Referential transparency__ means that an expression always evaluate to the same value. This is a property of (pure)
-functional languages. Ref: [Haskell Wiki - Referential_transparency](https://wiki.haskell.org/Referential_transparency)
+* __Referential transparency__ means that an expression always evaluates to the same value in any context. This is a 
+property of (pure) functional languages. 
+Ref: [Haskell Wiki - Referential_transparency](https://wiki.haskell.org/Referential_transparency),
+[Stackoverflow](http://stackoverflow.com/questions/210835/what-is-referential-transparency)
 
 # Programming with expressions and values
 
@@ -97,6 +99,62 @@ those that take a single argument and return another function if any arguments a
                        b = x + y
                    in (a + 1) * (b + 2)
                        
+# Types and polymorphism
+    
+* Haskell is strongly and statically typed
+
+* Declaring new data types
+
+        data Day = Mon | Tue | Wed | Thu | Fri | Sat | Sun 
+
+* __Parametric polymorphism__ - Parametric polymorphism refers to when the type of a value contains one or more 
+(unconstrained) type variables, so that the value may adopt any type that results from substituting those 
+variables with concrete types.
+
+Example:
+
+        first :: (a, b) -> a
+        
+here, `a`, `b` are _type variables_     
+
+* __Type synonyms__ - alternate names for types
+
+        type Card = (Rank, Suit)
+        
+* __Type classes__
+    
+    * Provide ad hoc polymorphism / overloading
+    
+    * Allow us to declare which types are instances of which class and provide definitions of the overloaded operations
+    associated with these classes
+    
+    Example:
+    
+        class Eq a where
+            (==)            :: a -> a-> Bool
+                
+    * Type classes are like interfaces in Java
+                    
+    * Instance declaration is done as follows
+                        
+        instance Eq Integer where
+            x == y = x `integerEq` y
+            
+* __Constructor__
+
+        data Bool = True | False
+        
+        data Tree a = Tip | Node a (Tree a) (Tree a)
+
+    * Type constructor - `Bool` and `Tree` are type constructors        
+    
+    * Data constructor - `True`, `False`, `Tip`, `Node`
+     
+    * Data constructors have no type. Hence it is illegal to write `Node a (Node a) (Node a)` 
+    
+        
+    
+    
     
                        
     
