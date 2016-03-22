@@ -150,7 +150,10 @@ here, `a`, `b` are _type variables_
     
     * Data constructor - `True`, `False`, `Tip`, `Node`
      
-    * Data constructors have no type. Hence it is illegal to write `Node a (Node a) (Node a)` 
+    * Data constructors have no type. Hence it is illegal to write `Node a (Node a) (Node a)`
+    
+Ref: [Haskell Wiki - Constructor](https://wiki.haskell.org/Constructor)    
+
     
         
     
