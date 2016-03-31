@@ -154,8 +154,81 @@ here, `a`, `b` are _type variables_
     
 Ref: [Haskell Wiki - Constructor](https://wiki.haskell.org/Constructor)    
 
+# Lists
+
+* Some useful library functions in Data.List
     
+    * concat :: [[a]] -> [a]
+    
+    * length :: [a] -> Int
+    
+    * reverse :: [a] -> [a]
+    
+    * map :: (a -> b) -> [a] -> [b]
+            
+    * lines :: String -> [String]
+    
+    * unlines :: [String] -> String
+    
+* List constructors
+    
+    `[]` and `:` are referred to as list constructors     
+    eg. [1, 2, 3] = 1 : (2 : (3 : []))
+    
+    * Types of list constructors
+         
+        * [] :: [a]
+
+        * (:) :: a -> [a] -> [a]
         
+    * Examples
+         
+         [] : [] :: [[t]]
+        
+         [] : ([] : []) :: [[t]]
+         
+         ([] : []) : [] :: [[[t]]]
+         
+* Pattern matching
+
+    * To define functions over lists it suffices to consider the two cases `[]` and `:`
+    
+    * Example: test if list is empty
+    
+        null :: [a] -> Bool
+        null [] = True
+        null (x:xs) = False
+    
+    * Example: return the first element of a non-empty list
+    
+        head :: [a] -> a
+        head (x:xs) = x
+        
+    * _Declaration_ style        
+        
+* Case analysis
+
+    * Example: test if list is empty
+        
+        null :: [a] -> Bool
+        null xs = case xs of
+                  []    -> True
+                  (_:_) -> False
+                  
+    * Example: return the first element of a non-empty list
+                      
+        head :: [a] -> a
+        head (xs) = case (xs) of
+                    []    -> error "undefined for empty list"
+                    (x:_) -> x
+
+    * _Expression_ style
+        
+        
+
+    
+         
+         
     
     
     
