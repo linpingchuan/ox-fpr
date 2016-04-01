@@ -223,6 +223,41 @@ Ref: [Haskell Wiki - Constructor](https://wiki.haskell.org/Constructor)
                     (x:_) -> x
 
     * _Expression_ style
+    
+* List comprehensions
+
+    * Special convenient syntax for list generating expressions
+    
+    * `[e | Qs]`
+    where e is an expression and Qs is a sequence of qualifiers. A qualifier may be a generator or guard.
+    
+    Example:
+        
+        [square x | x <- [1..5], odd x]
+        
+    primes up to a given bound
+        
+        primes, divisors :: Integer -> [Integer]
+        primes m = [n | n <- [1..m], divisors n == [1, n]]
+        divisors n = [d | d <- [1..n], n `mod` d == 0]
+        
+    quicksort
+    
+        quicksort :: (Ord a) => [a] -> [a]
+        quicksort []    = []
+        quicksort (x:xs) = quicksort [y | y <- xs, y < x]
+                           ++ [x] ++
+                           quicksort [y | y <- xs, y >= x]
+                           
+    * Like a nested loop, eg `[f b | a <- x, b <- g a, p b]` is related to
+    
+        foreach (int a in x)
+          foreach (int b in g a)
+            if (p b)
+              yield (f b)
+              
+                  
+                        
         
         
 
